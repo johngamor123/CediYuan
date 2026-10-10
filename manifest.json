@@ -1,0 +1,12 @@
+{
+"name": "CediYuan",
+"short_name": "CediYuan",
+"description": "Calculate illustrative GHS to CNY amounts and contact CediYuan through WhatsApp.",
+"start_url": "./index.html",
+"scope": "./",
+"display": "standalone",
+"orientation": "portrait",
+"background_color": "#f5f8f5",
+"theme_color": "#075b40",
+"icons": []
+}
