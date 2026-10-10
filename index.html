@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#075b40">
+  <meta name="description" content="Calculate illustrative Ghana cedi and Chinese yuan amounts and contact CediYuan through WhatsApp.">
+
+  <title>CediYuan | Currency Enquiries</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+
+  <script src="app.js" defer></script>
+</head>
+
+<body>
+  <!-- APP HEADER -->
+  <header class="app-header">
+    <a href="#" class="brand" data-screen="home" aria-label="CediYuan home">
+      <span class="brand-icon">₵</span>
+      <span class="brand-text">
+        <strong>CediYuan</strong>
+        <small>Currency made clearer</small>
+      </span>
+    </a>
+
+    <button id="themeToggle" class="icon-button"
+      type="button" aria-label="Toggle dark mode">
+      ◐
+    </button>
+  </header>
+
+  <main class="app-main">
+
+    <!-- HOME SCREEN -->
+    <section id="homeScreen" class="screen active">
+      <div class="welcome-banner">
+        <span class="eyebrow">WELCOME TO CEDIYUAN</span>
+        <h1>Understand your money, one conversion at a time.</h1>
+        <p>
+          Calculate an estimated amount between Ghana cedis and
+          Chinese yuan, then contact us directly for your enquiry.
+        </p>
+
+        <button class="primary-button" type="button"
+          data-screen="convert">
+          Convert Currency →
+        </button>
+      </div>
+
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">QUICK CALCULATOR</span>
+          <h2>GHS to CNY</h2>
+        </div>
+        <span class="currency-badge">₵ → ¥</span>
+      </div>
+
+      <div class="card quick-calculator">
+        <label for="homeAmount">Amount in Ghana cedis</label>
+
+        <div class="amount-input-wrap">
+          <span>GH₵</span>
+          <input id="homeAmount" type="number" min="0"
+            step="any" inputmode="decimal"
+            placeholder="Enter amount">
+        </div>
+
+        <div class="result-area">
+          <span>Estimated amount in yuan</span>
+          <strong id="homeResult">—</strong>
+          <small id="homeRate">GH₵1 = ¥0.50</small>
+        </div>
+
+        <button class="secondary-button" type="button"
+          data-screen="convert">
+          Open Full Converter
+        </button>
+      </div>
+
+      <div class="notice-card">
+        <span class="notice-icon">ⓘ</span>
+        <div>
+          <strong>About these estimates</strong>
+          <p>
+            Rates shown in this app are illustrative, not live
+            exchange quotes. Confirm the current rate and terms
+            directly with CediYuan before proceeding.
+          </p>
+        </div>
+      </div>
+
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">GETTING STARTED</span>
+          <h2>New to CediYuan?</h2>
+        </div>
+      </div>
+
+      <button class="menu-card" type="button"
+        data-screen="howItWorksScreen">
+        <span class="menu-icon">↗</span>
+        <span class="menu-copy">
+          <strong>How It Works</strong>
+          <small>Learn how to calculate and make an enquiry.</small>
+        </span>
+        <span class="menu-arrow">›</span>
+      </button>
+
+      <button class="menu-card" type="button"
+        data-screen="helpScreen">
+        <span class="menu-icon">?</span>
+        <span class="menu-copy">
+          <strong>Help & Frequently Asked Questions</strong>
+          <small>Find answers to common questions.</small>
+        </span>
+        <span class="menu-arrow">›</span>
+      </button>
+
+      <button class="menu-card" type="button"
+        data-contact>
+        <span class="menu-icon">☏</span>
+        <span class="menu-copy">
+          <strong>Contact Us</strong>
+          <small>Talk to us through WhatsApp.</small>
+        </span>
+        <span class="menu-arrow">›</span>
+      </button>
+    </section>
+
+
+    <!-- CONVERT SCREEN -->
+    <section id="convertScreen" class="screen" hidden>
+      <div class="page-heading">
+        <span class="eyebrow">CURRENCY CALCULATOR</span>
+        <h1>Convert Currency</h1>
+        <p>Calculate an estimate in either direction.</p>
+      </div>
+
+      <div class="card converter-card">
+        <label for="convertAmount">You enter</label>
+
+        <div class="amount-input-wrap">
+          <span id="convertInputSymbol">GH₵</span>
+          <input id="convertAmount" type="number"
+            min="0" step="any" inputmode="decimal"
+            placeholder="Enter amount">
+          <small id="convertInputCode">GHS</small>
+        </div>
+
+        <div class="swap-row">
+          <span>Conversion direction</span>
+          <button id="swapCurrencies" class="swap-button"
+            type="button" aria-label="Swap currencies">
+            ⇅ Swap
+          </button>
+        </div>
+
+        <div class="result-area">
+          <span>Estimated amount</span>
+          <strong id="convertResult">—</strong>
+          <small id="convertResultCode">Chinese yuan (CNY)</small>
+        </div>
+
+        <div class="rate-summary">
+          <span>Illustrative rate</span>
+          <strong id="convertRate">GH₵1 = ¥0.50</strong>
+        </div>
+
+        <button class="text-button" id="clearConverter"
+          type="button">
+          Clear amount
+        </button>
+
+        <button class="primary-button full-button"
+          id="convertWhatsApp" type="button">
+          Continue on WhatsApp →
+        </button>
+
+        <p class="small-note">
+          Sending an enquiry does not confirm a transaction.
+          Please confirm the current rate and all terms directly.
+        </p>
+      </div>
+
+      <div class="section-heading">
+        <h2>Quick amounts</h2>
+      </div>
+
+      <div class="quick-amount-grid">
+        <button type="button" data-amount="100">100</button>
+        <button type="button" data-amount="500">500</button>
+        <button type="button" data-amount="1000">1,000</button>
+        <button type="button" data-amount="5000">5,000</button>
+      </div>
+
+      <p class="small-note">
+        Quick amounts are denominated in the currency you have
+        selected above.
+      </p>
+    </section>
+
+
+    <!-- RATES SCREEN -->
+    <section id="ratesScreen" class="screen" hidden>
+      <div class="page-heading">
+        <span class="eyebrow">RATE INFORMATION</span>
+        <h1>Illustrative Rates</h1>
+        <p>Understand the rate used by the calculator.</p>
+      </div>
+
+      <div class="card rate-card">
+        <span class="rate-direction">GHANA CEDIS → CHINESE YUAN</span>
+        <strong id="forwardRate">GH₵1 = ¥0.50</strong>
+        <p>Each GH₵1 is calculated as ¥0.50 in this example.</p>
+      </div>
+
+      <div class="card rate-card">
+        <span class="rate-direction">CHINESE YUAN → GHANA CEDIS</span>
+        <strong id="reverseRate">¥1 = GH₵2.00</strong>
+        <p>The reverse calculation uses the mathematical inverse.</p>
+      </div>
+
+      <div class="notice-card">
+        <span class="notice-icon">ⓘ</span>
+        <div>
+          <strong>Not a live market rate</strong>
+          <p>
+            These values are illustrative examples configured
+            in the app. They are not a confirmed offer, and the
+            rate available for a real transaction may differ.
+          </p>
+        </div>
+      </div>
+
+      <button class="primary-button full-button"
+        type="button" data-contact>
+        Ask for the Current Rate →
+      </button>
+    </section>
+
+
+    <!-- MORE SCREEN -->
+    <section id="moreScreen" class="screen" hidden>
+      <div class="page-heading">
+        <span class="eyebrow">EXPLORE CEDIYUAN</span>
+        <h1>More</h1>
+        <p>Guides, support, and app information.</p>
+      </div>
+
+      <button class="menu-card" type="button"
+        data-screen="howItWorksScreen">
+        <span class="menu-icon">↗</span>
+        <span class="menu-copy">
+          <strong>How It Works</strong>
+          <small>Follow the steps from calculation to enquiry.</small>
+        </span>
+        <span class="menu-arrow">›</span>
+      </button>
+
+      <button class="menu-card" type="button"
+        data-screen="helpScreen">
+        <span class="menu-icon">?</span>
+        <span class="menu-copy">
+          <strong>Help & FAQ</strong>
+          <small>Answers to frequently asked questions.</small>
+        </span>
+        <span class="menu-arrow">›</span>
+      </button>
+
+      <button class="menu-card" type="button"
+        data-screen="contactScreen">
+        <span class="menu-icon">☏</span>
+        <span class="menu-copy">
+          <strong>Contact & Support</strong>
+          <small>Find out how to contact CediYuan.</small>
+        </span>
+        <span class="menu-arrow">›</span>
+      </button>
+
+      <button class="menu-card" type="button"
+        data-screen="privacyScreen">
+        <span class="menu-icon">⌑</span>
+        <span class="menu-copy">
+          <strong>Privacy Information</strong>
+          <small>Learn how this version handles your information.</small>
+        </span>
+        <span class="menu-arrow">›</span>
+      </button>
+
+      <button class="menu-card" type="button"
+        data-screen="aboutScreen">
+        <span class="menu-icon">ⓘ</span>
+        <span class="menu-copy">
+          <strong>About CediYuan</strong>
+          <small>Learn about the app and its purpose.</small>
+        </span>
+        <span class="menu-arrow">›</span>
+      </button>
+
+      <button class="menu-card" type="button"
+        data-screen="settingsScreen">
+        <span class="menu-icon">⚙</span>
+        <span class="menu-copy">
+          <strong>Settings</strong>
+          <small>Personalise your app experience.</small>
+        </span>
+        <span class="menu-arrow">›</span>
+      </button>
+    </section>
+
+
+    <!-- HOW IT WORKS SCREEN -->
+    <section id="howItWorksScreen" class="screen" hidden>
+      <div class="page-heading">
+        <span class="eyebrow">YOUR QUICK GUIDE</span>
+        <h1>How CediYuan Works</h1>
+        <p>Four simple steps to make a currency enquiry.</p>
+      </div>
+
+      <div class="card steps-card">
+        <article class="step-item">
+          <span class="step-number">01</span>
+          <div>
+            <h2>Choose your direction</h2>
+            <p>
+              Open Convert and choose GHS to CNY or CNY to GHS
+              using the swap button.
+            </p>
+          </div>
+        </article>
+
+        <article class="step-item">
+          <span class="step-number">02</span>
+          <div>
+            <h2>Enter your amount</h2>
+            <p>
+              Type the amount you want to calculate. You can
+              also choose one of the quick amount buttons.
+            </p>
+          </div>
+        </article>
+
+        <article class="step-item">
+          <span class="step-number">03</span>
+          <div>
+            <h2>Review your estimate</h2>
+            <p>
+              The app calculates an estimate using its configured
+              illustrative rate. This is not a live quote.
+            </p>
+          </div>
+        </article>
+
+        <article class="step-item">
+          <span class="step-number">04</span>
+          <div>
+            <h2>Contact us on WhatsApp</h2>
+            <p>
+              Send an enquiry and communicate directly with
+              CediYuan to confirm the current rate and next steps.
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <div class="notice-card">
+        <span class="notice-icon">!</span>
+        <div>
+          <strong>Before you proceed</strong>
+          <p>
+            A calculation or WhatsApp message does not complete
+            a transaction. Wait for direct confirmation of the
+            rate and terms before making any decisions.
+          </p>
+        </div>
+      </div>
+
+      <button class="primary-button full-button"
+        type="button" data-screen="convert">
+        Try the Converter →
+      </button>
+    </section>
+
+
+    <!-- HELP & FAQ SCREEN -->
+    <section id="helpScreen" class="screen" hidden>
+      <div class="page-heading">
+        <span class="eyebrow">WE'RE HERE TO HELP</span>
+        <h1>Help & FAQ</h1>
+        <p>Answers to common questions about CediYuan.</p>
+      </div>
+
+      <div class="card faq-list">
+        <details class="faq-item">
+          <summary>What is CediYuan?</summary>
+          <p>
+            CediYuan is a currency calculation and enquiry app
+            that helps you estimate amounts between Ghana cedis
+            and Chinese yuan.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Is the exchange rate live?</summary>
+          <p>
+            No. The rate in this version is an illustrative
+            example. It is not connected to a live currency feed.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Why might the final amount be different?</summary>
+          <p>
+            Rates and transaction terms may change. Ask CediYuan
+            to confirm the current rate and applicable terms
+            before proceeding.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Can I exchange money inside the app?</summary>
+          <p>
+            No. This version calculates estimates and prepares
+            enquiries. It does not process exchanges or payments.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Does a WhatsApp message confirm my transaction?</summary>
+          <p>
+            No. Sending a message only starts a conversation.
+            You need direct confirmation of the rate and terms.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Do I need to create an account?</summary>
+          <p>
+            No. A customer account is not required in this
+            version of CediYuan.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Can I use the calculator offline?</summary>
+          <p>
+            The calculator may work offline after the app files
+            have been cached by a supported browser. WhatsApp
+            enquiries require an internet connection.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>How do I get help?</summary>
+          <p>
+            Open Contact & Support and use the WhatsApp button
+            to send your question.
+          </p>
+        </details>
+      </div>
+
+      <button class="primary-button full-button"
+        type="button" data-screen="contactScreen">
+        Contact Support →
+      </button>
+    </section>
+
+
+    <!-- CONTACT SCREEN -->
+    <section id="contactScreen" class="screen" hidden>
+      <div class="page-heading">
+        <span class="eyebrow">LET'S TALK</span>
+        <h1>Contact & Support</h1>
+        <p>Send your enquiry directly through WhatsApp.</p>
+      </div>
+
+      <div class="card contact-card">
+        <div class="contact-icon">☏</div>
+        <h2>Chat with CediYuan</h2>
+        <p>
+          Ask about the current rate, the calculation, or the
+          next steps for your enquiry.
+        </p>
+        <button class="primary-button full-button"
+          type="button" data-contact>
+          Open WhatsApp →
+        </button>
+        <p class="small-note">
+          WhatsApp is a separate service. You need an internet
+          connection to send messages.
+        </p>
+      </div>
+
+      <div class="notice-card">
+        <span class="notice-icon">ⓘ</span>
+        <div>
+          <strong>Need to report a problem?</strong>
+          <p>
+            Describe what happened in your WhatsApp message.
+            Please avoid sending passwords or unnecessary
+            sensitive personal information.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- PRIVACY SCREEN -->
+    <section id="privacyScreen" class="screen" hidden>
+      <div class="page-heading">
+        <span class="eyebrow">YOUR INFORMATION</span>
+        <h1>Privacy Information</h1>
+        <p>A simple explanation of this app's current behaviour.</p>
+      </div>
+
+      <div class="card information-card">
+        <h2>No customer account required</h2>
+        <p>
+          This version does not require you to register or sign
+          in to use the calculator.
+        </p>
+
+        <h2>Conversion amounts</h2>
+        <p>
+          Amounts you enter are used by the calculator in your
+          browser. This version does not send them to a CediYuan
+          server for processing.
+        </p>
+
+        <h2>App preferences</h2>
+        <p>
+          Your theme, conversion direction, and decimal-place
+          preferences may be stored in your browser's local
+          storage on this device.
+        </p>
+
+        <h2>WhatsApp</h2>
+        <p>
+          If you choose to contact CediYuan, the app opens
+          WhatsApp with a prepared message. Information you
+          choose to send is handled through WhatsApp and is
+          subject to its privacy practices.
+        </p>
+
+        <h2>Clearing saved settings</h2>
+        <p>
+          Use the reset option in Settings to restore preferences.
+          Clearing browser data may also remove locally saved
+          preferences.
+        </p>
+
+        <p class="small-note">
+          This page describes the intended behaviour of this
+          version. It is not a substitute for a complete privacy
+          policy if the service later collects additional data.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ABOUT SCREEN -->
+    <section id="aboutScreen" class="screen" hidden>
+      <div class="page-heading">
+        <span class="eyebrow">OUR APP</span>
+        <h1>About CediYuan</h1>
+        <p>Currency calculations made clearer.</p>
+      </div>
+
+      <div class="card about-card">
+        <div class="about-logo">₵</div>
+        <h2>CediYuan</h2>
+        <p>
+          CediYuan helps users calculate illustrative amounts
+          between Ghana cedis and Chinese yuan and contact
+          CediYuan directly for enquiries.
+        </p>
+
+        <div class="about-detail">
+          <span>App version</span>
+          <strong id="appVersion">1.0.0</strong>
+        </div>
+
+        <div class="about-detail">
+          <span>Customer accounts</span>
+          <strong>Not required</strong>
+        </div>
+
+        <div class="about-detail">
+          <span>Payment processing</span>
+          <strong>Not available</strong>
+        </div>
+
+        <p class="small-note">
+          CediYuan estimates are illustrative and are not
+          guaranteed exchange quotes.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- SETTINGS SCREEN -->
+    <section id="settingsScreen" class="screen" hidden>
+      <div class="page-heading">
+        <span class="eyebrow">MAKE IT YOURS</span>
+        <h1>Settings</h1>
+        <p>Personalise how CediYuan looks and calculates.</p>
+      </div>
+
+      <div class="card settings-card">
+        <div class="setting-row">
+          <div class="setting-copy">
+            <strong>Dark mode</strong>
+            <small>Use a darker colour theme.</small>
+          </div>
+          <label class="switch">
+            <input id="darkModeSetting" type="checkbox">
+            <span class="switch-track"></span>
+          </label>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-copy">
+            <strong>Default conversion</strong>
+            <small>Choose which currency you enter first.</small>
+          </div>
+          <select id="defaultDirection">
+            <option value="GHS">GHS → CNY</option>
+            <option value="CNY">CNY → GHS</option>
+          </select>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-copy">
+            <strong>Decimal places</strong>
+            <small>Choose the number of decimal places shown.</small>
+          </div>
+          <select id="decimalPlaces">
+            <option value="2">2 places</option>
+            <option value="3">3 places</option>
+            <option value="4">4 places</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="card settings-card">
+        <div class="setting-row">
+          <div class="setting-copy">
+            <strong>Reset preferences</strong>
+            <small>Restore the default appearance and calculation.</small>
+          </div>
+          <button id="resetSettings" class="secondary-button"
+            type="button">
+            Reset
+          </button>
+        </div>
+      </div>
+
+      <button class="menu-card" type="button"
+        data-screen="privacyScreen">
+        <span class="menu-icon">⌑</span>
+        <span class="menu-copy">
+          <strong>Privacy Information</strong>
+          <small>Read how this version handles information.</small>
+        </span>
+        <span class="menu-arrow">›</span>
+      </button>
+
+      <button class="menu-card" type="button"
+        data-screen="aboutScreen">
+        <span class="menu-icon">ⓘ</span>
+        <span class="menu-copy">
+          <strong>About CediYuan</strong>
+          <small>App information and version.</small>
+        </span>
+        <span class="menu-arrow">›</span>
+      </button>
+    </section>
+
+  </main>
+
+
+  <!-- BOTTOM NAVIGATION -->
+  <nav class="bottom-nav" aria-label="Main navigation">
+    <button class="nav-item active" type="button"
+      data-screen="home" aria-current="page">
+      <span class="nav-icon">⌂</span>
+      <span>Home</span>
+    </button>
+
+    <button class="nav-item" type="button"
+      data-screen="convert">
+      <span class="nav-icon">⇄</span>
+      <span>Convert</span>
+    </button>
+
+    <button class="nav-item" type="button"
+      data-screen="rates">
+      <span class="nav-icon">◷</span>
+      <span>Rates</span>
+    </button>
+
+    <button class="nav-item" type="button"
+      data-screen="moreScreen">
+      <span class="nav-icon">☰</span>
+      <span>More</span>
+    </button>
+  </nav>
+
+  <footer class="app-footer">
+    <p>© <span id="currentYear"></span> CediYuan</p>
+    <p>Illustrative calculations only. Confirm all rates and terms directly.</p>
+  </footer>
+
+</body>
+</html>
